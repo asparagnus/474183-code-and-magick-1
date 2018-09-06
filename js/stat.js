@@ -39,7 +39,7 @@ window.renderStatistics = function (ctx, players, time) {
   for (var i = 0; i < players.length; i++) {
     // MAX_BAR/DAR_WIDTH = BAR[i]/X
     // X = (BAR_WIDTH * BAR[i]) / MAX_BAR
-    if (players[i] === 'Вы') { // цвет
+    if (players[i] === 'Вы') { // цвет Вы
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
       ctx.fillStyle = 'rgba(14, 32, 232, ' + Math.random(0.3, 0.9) + ')';
