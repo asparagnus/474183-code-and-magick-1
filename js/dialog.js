@@ -8,12 +8,6 @@
   var userDialogClose = userDialog.querySelector('.setup-close');
   var userNameElement = userDialog.querySelector('.setup-user-name');
 
-  var userCoat = userDialog.querySelector('.setup-wizard .wizard-coat');
-  var userCoatElement = userDialog.querySelector('.setup-player input[name=coat-color]');
-  var userEyes = userDialog.querySelector('.setup-wizard .wizard-eyes');
-  var userEyesElement = userDialog.querySelector('.setup-player input[name=eyes-color]');
-  var userFireball = userDialog.querySelector('.setup-fireball-wrap');
-  var userFireballElement = userDialog.querySelector('.setup-fireball-wrap input[name=fireball-color]');
   var uploadElement = userDialog.querySelector('.upload');
   var formElement = userDialog.querySelector('.setup-wizard-form');
 
@@ -69,27 +63,6 @@
   userDialogClose.addEventListener('keydown', function (evt) {
     window.utils.isEnterEvent(evt, closePopup);
   });
-
-  // функция изменения цвета плаща
-  var onCoatClick = function () {
-    var color = window.setup.COAT_COLORS[window.setup.getRandomIndex(window.setup.COAT_COLORS.length)];
-    userCoat.style.fill = color;
-    userCoatElement.value = color;
-  };
-
-  // функция изменения цвета глаз
-  var onEyesClick = function () {
-    var color = window.setup.EYES_COLORS[window.setup.getRandomIndex(window.setup.EYES_COLORS.length)];
-    userEyes.style.fill = color;
-    userEyesElement.value = color;
-  };
-
-  // функция-обработчик нажатия на фаербол
-  var onFireballClick = function () {
-    var color = window.setup.FIREBALL_COLORS[window.setup.getRandomIndex(window.setup.FIREBALL_COLORS.length)];
-    userFireball.style.background = color;
-    userFireballElement.value = color;
-  };
 
   // функция-обработчик захвата изображения пользователя
   var onUserPicMouseDown = function (evt) {
@@ -149,15 +122,7 @@
   // обработчик отправки данных формы
   formElement.addEventListener('submit', onFormSubmit);
 
-  // обработчик клика по плащу
-  userCoat.addEventListener('click', onCoatClick);
-
-  // обработчик клика по глазам
-  userEyes.addEventListener('click', onEyesClick);
-
-  // обработчик клика по фаерболу
-  userFireball.addEventListener('click', onFireballClick);
-
   // обработчик нажатия на uploadElement
   uploadElement.addEventListener('mousedown', onUserPicMouseDown);
+
 })();

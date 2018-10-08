@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 // отрисовывает похожих магов
 (function () {
   var wizardsParams = {
@@ -59,3 +59,4 @@
     getRandomIndex: getRandomIndex
   };
 })();
+*/
