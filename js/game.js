@@ -263,9 +263,9 @@ window.Game = (function () {
    */
   LevelsInitialize[Level.INTRO] = function (state) {
     state.objects.push(
-        // Установка персонажа в начальное положение. Он стоит в крайнем левом
-        // углу экрана, глядя вправо. Скорость перемещения персонажа на этом
-        // уровне равна 2px за кадр.
+    // Установка персонажа в начальное положение. Он стоит в крайнем левом
+    // углу экрана, глядя вправо. Скорость перемещения персонажа на этом
+    // уровне равна 2px за кадр.
         {
           direction: Direction.RIGHT,
           height: window.GameConstants.Wizard.getHeight(window.GameConstants.Wizard.width),

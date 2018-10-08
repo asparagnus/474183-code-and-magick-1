@@ -71,7 +71,7 @@
   <form class="setup-wizard-form"
         method="post"
         enctype="multipart/form-data"
-        action = "https://js.dump.academy/code-and-magick"
+        action="https://js.dump.academy/code-and-magick"
         autocomplete="off">
 
     <div class="setup-title">
@@ -82,7 +82,7 @@
         </div>
         <label>
           <input type="text" name="username"
-                 minlength = "2" maxlength="25" required
+                 minlength="2" maxlength="25" required
                  class="setup-user-name" value="Синий Пендальф"/>
         </label>
       </div>
@@ -182,31 +182,28 @@
   </div>
 </template>
 
-<script>
+<script type="text/javascript">
   var fireballSize = 22;
   var wizardSpeed = 3;
   var wizardWidth = 70;
-  function getFireballSpeed(left) {
-    var speed;
-    if (left) {
-      return 5;
-    } else {
-      return 2;
-    }
-  }
-  function getWizardHeight(wizardWidth) {
+  var getFireballSpeed = function (left) {
+    return left ? 5 : 2;
+  };
+  var getWizardHeight = function () {
     return 1.337 * wizardWidth;
-  }
-  function getWizardX(width) {
-    return (width / 2) - (wizardWidth / 2);
-  }
-  function getWizardY(height) {
-    return (height * 2) / 3;
-  }
+  };
+  var getWizardX = function (width) {
+    return (width - wizardWidth) / 2;
+  };
+  var getWizardY = function (height) {
+    return height / 3 - getWizardHeight();
+  };
 </script>
 
-<script src="js/setup.js"></script>
 <script src="js/stat.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/setup.js"></script>
+<script src="js/dialog.js"></script>
 <script src="js/game.js"></script>
 
 </body>
