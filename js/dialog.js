@@ -15,6 +15,7 @@
   var userFireball = userDialog.querySelector('.setup-fireball-wrap');
   var userFireballElement = userDialog.querySelector('.setup-fireball-wrap input[name=fireball-color]');
   var uploadElement = userDialog.querySelector('.upload');
+  var formElement = userDialog.querySelector('.setup-wizard-form');
 
   var PositionUserDialog = {
     x: userDialog.style.left,
@@ -133,6 +134,20 @@
     document.addEventListener('mousemove', onUserPicMouseMove);
     document.addEventListener('mouseup', onUserPicMouseUp);
   };
+
+  // функция-коллбэк скрывает диалог
+  var onCloseDialog = function () {
+    userDialog.classList.add('hidden');
+  };
+
+  // функция-обработчик отправки формы
+  var onFormSubmit = function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(formElement), onCloseDialog, window.utils.onError);
+  };
+
+  // обработчик отправки данных формы
+  formElement.addEventListener('submit', onFormSubmit);
 
   // обработчик клика по плащу
   userCoat.addEventListener('click', onCoatClick);

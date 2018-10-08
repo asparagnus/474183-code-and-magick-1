@@ -26,26 +26,6 @@
     return Math.floor(Math.random() * max);
   };
 
-  // функция возвращает объект wizard
-  var getWizardObject = function () {
-    var wizard = {
-      name: wizardsParams.NAMES[getRandomIndex(wizardsParams.NAMES.length)] + ' ' +
-        wizardsParams.SURNAMES[getRandomIndex(wizardsParams.SURNAMES.length)],
-      coatColor: wizardsParams.COAT_COLORS[getRandomIndex(wizardsParams.COAT_COLORS.length)],
-      eyesColor: wizardsParams.EYES_COLORS[getRandomIndex(wizardsParams.EYES_COLORS.length)]
-    };
-    return wizard;
-  };
-
-  // функция заполнения массива похожих персонажей
-  var getWizards = function (count) {
-    var arr = [];
-    for (var i = 0; i < count; i++) {
-      arr.push(getWizardObject());
-    }
-    return arr;
-  };
-
   // функция создания DOM-элементов и заполнения их данными из массива
   var renderWizard = function (wizard) {
     var wizardElement = document.querySelector('#similar-wizard-template')
@@ -53,20 +33,23 @@
       .querySelector('.setup-similar-item')
       .cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
     return wizardElement;
   };
 
-  // функция отрисовки сгенерированных DOM-элементов
-  var renderWizardElements = function () {
-    var wizards = getWizards(wizardsParams.COUNT);
+  // функция отрисовки полученных с сервера объектов
+  var onLoad = function (wizards) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < wizards.length; i++) {
-      fragment.appendChild(renderWizard(wizards[i]));
+    for (var i = 0; i < wizardsParams.COUNT; i++) {
+      var temp = wizards[getRandomIndex(wizards.length)];
+      fragment.appendChild(renderWizard(temp));
     }
     similarListElement.appendChild(fragment);
+    similarElement.classList.remove('hidden');
   };
+
+  window.backend.load(onLoad, window.utils.onError);
 
   // объект с экспортируемыми значениями в window
   window.setup = {
@@ -75,7 +58,4 @@
     FIREBALL_COLORS: wizardsParams.FIREBALL_COLORS,
     getRandomIndex: getRandomIndex
   };
-
-  similarElement.classList.remove('hidden');
-  renderWizardElements();
 })();
